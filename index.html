@@ -1,192 +1,209 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Special One</title>
+    <title>A Special Surprise for You</title>
     <style>
-        :root {
-            --primary-pink: #ff80ab;
-            --soft-pink: #fce4ec;
-            --text-color: #880e4f;
-        }
-
+        /* Background & Fonts */
         body {
             margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #fff5f7 0%, var(--soft-pink) 100%);
-            font-family: 'Segoe UI', 'Pyidaungsu', sans-serif;
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            padding: 0;
+            background: #fff0f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            text-align: center;
         }
 
-        /* Top Section: Her Profile Image */
-        .header {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            margin-bottom: 40px;
+        /* Floating Hearts Animation */
+        .hearts-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
-
-        .profile-container {
-            text-align: right;
-            cursor: pointer;
-        }
-
-        .profile-img {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            border: 4px solid white;
-            object-fit: cover;
-            box-shadow: 0 8px 20px rgba(255, 128, 171, 0.4);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        /* Just for you text */
-        .hero-text h1 {
-            font-size: 1.6rem;
-            margin: 10px 0 5px 0;
-            font-family: 'Georgia', serif;
-            font-style: italic;
-        }
-
-        /* Gallery Grid: 2 columns */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            justify-items: center;
-            margin-top: 20px;
-        }
-
-        .img-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        .flower-item {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid white;
-            object-fit: cover;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        /* Animation when clicked */
-        .active-img {
-            transform: scale(1.15) translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255, 128, 171, 0.5);
-            border-color: var(--primary-pink);
-        }
-
-        /* Message Box */
-        .message-box {
-            max-height: 0;
-            overflow: hidden;
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: float 6s infinite ease-in;
             opacity: 0;
-            transition: all 0.5s ease;
-            text-align: center;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: #ad1457;
-            padding: 0 5px;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
 
-        .show-message {
-            max-height: 50px;
-            opacity: 1;
-            transform: translateY(5px);
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 50px 20px;
         }
 
-        .footer-quote {
-            text-align: center;
+        /* Garden Layout (8 Flowers) */
+        .flower-garden {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .flower-box {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .flower-box:hover { transform: scale(1.1); }
+        .flower-box img {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            border: 4px solid #ffb3c1;
+            object-fit: cover;
+        }
+        .poem-text {
+            font-size: 14px; color: #c9184a;
+            margin-top: 5px; font-style: italic;
+            height: 40px;
+        }
+
+        /* Her Main Photo (The Centerpiece) */
+        .crush-photo {
+            margin: 40px auto;
+            position: relative;
+            display: inline-block;
+        }
+        .crush-photo img {
+            width: 250px; height: 250px;
+            border-radius: 50%;
+            border: 8px solid #ff4d6d;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+
+        /* Proposal Section */
+        .proposal {
             margin-top: 50px;
+            background: white;
             padding: 30px;
-            font-style: italic;
-            border-top: 1px dashed var(--primary-pink);
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        h2 { color: #ff4d6d; }
+
+        .btn-group {
+            margin-top: 20px;
+            position: relative;
+            height: 60px;
+        }
+        button {
+            padding: 10px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #yesBtn { background: #ff4d6d; color: white; margin-right: 10px; }
+        #noBtn { background: #adb5bd; color: white; position: absolute; }
+
+        /* Music Button */
+        #musicToggle {
+            position: fixed; top: 20px; right: 20px;
+            background: white; border: 1px solid #ff4d6d;
+            padding: 10px; border-radius: 50%; cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="profile-container" onclick="toggleMessage(this, 'You\'re as sweet as ever CHO')">
-            <img src="img1.jpg" alt="Crush" class="profile-img">
-            <div class="hero-text">
-                <h1>Just for you</h1>
+    <div class="hearts-container" id="hearts"></div>
+
+    <button id="musicToggle" onclick="toggleMusic()"></button>
+    <audio id="bgMusic" loop>
+        <source src="song1.mp3" type="audio/mp4">
+    </audio>
+
+    <div class="container">
+        <h1>For Someone Special... </h1>
+
+        <div class="flower-garden">
+            <script>
+                const poems = [
+                    "Your smile is my favorite view.",
+                    "In the garden of my life, you're the rarest bloom.",
+                    "Every moment with you is a poem.",
+                    "Your kindness is a light in the dark.",
+                    "I find peace in your presence.",
+                    "You make the world more beautiful.",
+                    "Thinking of you makes my day.",
+                    "You are my favorite melody."
+                ];
+                for (let i = 2; i <= 9; i++) {
+                    document.write(`
+                        <div class="flower-box" onclick="alert('${poems[i-2]}')">
+                            <img src="img${i}.jpg" alt="flower">
+                            <div class="poem-text">Click Me</div>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+
+        <div class="crush-photo">
+            <img src="img1.jpg" alt="You">
+            <p style="color:#ff4d6d; font-weight: bold;">The most beautiful of all.</p>
+        </div>
+
+        <div class="proposal">
+            <h2>Will you be my Valentine? </h2>
+            <div class="btn-group">
+                <button id="yesBtn" onclick="celebrate()">Yes!</button>
+                <button id="noBtn" onmouseover="moveButton()">No</button>
             </div>
-            <div class="message-box"></div>
         </div>
-    </div>
-
-    <div class="gallery">
-        <div class="img-wrapper" onclick="toggleMessage(this, 'Every Flower reminds me of you')">
-            <img src="img2.jpg" class="flower-item">
-            <div class="message-box"></div>
-        </div>
-        <div class="img-wrapper" onclick="toggleMessage(this, 'Your Smile is my favorite view')">
-            <img src="img3.jpg" class="flower-item">
-            <div class="message-box"></div>
-        </div>
-        <div class="img-wrapper" onclick="toggleMessage(this, 'Beautiful, Just like your heart')">
-            <img src="img4.jpg" class="flower-item">
-            <div class="message-box"></div>
-        </div>
-        <div class="img-wrapper" onclick="toggleMessage(this, 'Wishing you a Bright day!')">
-            <img src="img5.jpg" class="flower-item">
-            <div class="message-box"></div>
-        </div>
-        <div class="img-wrapper" onclick="toggleMessage(this, 'You are my sunshine')">
-            <img src="img6.jpg" class="flower-item">
-            <div class="message-box"></div>
-        </div>
-        <div class="img-wrapper" onclick="toggleMessage(this, 'Incredibly special  to me!')">
-            <img src="img7.jpg" class="flower-item">
-            <div class="message-box"></div>
-        </div>
-        <div class="img-wrapper" onclick="toggleMessage(this, 'Stay happy, stay you')">
-            <img src="img8.jpg" class="flower-item">
-            <div class="message-box"></div>
-        </div>
-        <div class="img-wrapper" onclick="toggleMessage(this, 'Purely and simply, the best!')">
-            <img src="img9.jpg" class="flower-item">
-            <div class="message-box"></div>
-        </div>
-    </div>
-
-    <div class="footer-quote">
-        "Purely&Simply,you're my best❤  " 
     </div>
 
     <script>
-        function toggleMessage(element, text) {
-            // အဟောင်းတွေကို အရင်ဖျောက်မယ်
-            const allMessages = document.querySelectorAll('.message-box');
-            const allImages = document.querySelectorAll('.flower-item, .profile-img');
-            
-            allMessages.forEach(msg => {
-                msg.classList.remove('show-message');
-                msg.innerHTML = '';
-            });
-            allImages.forEach(img => img.classList.remove('active-img'));
+        // 1. Floating Hearts Logic
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        setInterval(createHeart, 300);
 
-            // အသစ်ကို ပြမယ်
-            const currentMsg = element.querySelector('.message-box');
-            const currentImg = element.querySelector('img');
-            
-            currentMsg.innerHTML = text;
-            currentMsg.classList.add('show-message');
-            currentImg.classList.add('active-img');
+        // 2. Runaway "No" Button
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // 3. Music Control
+        const music = document.getElementById('bgMusic');
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                document.getElementById('musicToggle').innerHTML = '';
+            } else {
+                music.pause();
+                document.getElementById('musicToggle').innerHTML = '';
+            }
+        }
+
+        // 4. Celebration
+        function celebrate() {
+            alert("Yay! You made my day! ");
+            // You can add confetti effect here later
         }
     </script>
 </body>
 </html>
+
