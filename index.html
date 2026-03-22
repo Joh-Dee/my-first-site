@@ -6,200 +6,227 @@
 <title>Happy Thingyan </title>
 
 <style>
+*{box-sizing:border-box}
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Times New Roman', serif;
   text-align: center;
   background: linear-gradient(to bottom, #a8e6ff, #ffd6e0);
   overflow-x: hidden;
 }
 
+/* water bubbles bg */
+.bubble{
+  position: fixed;
+  bottom:-40px;
+  width:20px;height:20px;
+  background:rgba(255,255,255,0.4);
+  border-radius:50%;
+  animation: rise 10s linear infinite;
+}
+@keyframes rise{
+  to{ transform: translateY(-110vh); opacity:0 }
+}
+
 /* Profile */
-.profile {
-  margin-top: 40px;
-}
-
+.profile { margin-top: 30px; }
 .profile img {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  border: 4px solid white;
-  object-fit: cover;
+  width: 170px;height:170px;border-radius:50%;
+  border:4px solid white;object-fit:cover;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
-
-h1 {
-  color: white;
-}
+h1{color:white;text-shadow:0 5px 10px rgba(0,0,0,0.3)}
 
 /* Countdown */
-#countdown {
-  font-size: 20px;
-  color: white;
-  margin-top: 10px;
+#countdown{
+  margin-top:10px;
+  font-size:20px;
+  color:white;
+  border:2px solid white;
+  display:inline-block;
+  padding:10px 20px;
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
 /* Gallery */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 20px;
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  padding:20px;
 }
+.gallery img{
+  width:100%;border-radius:12px;cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  transition:0.3s;
+}
+.gallery img:hover{ transform:scale(1.05) }
 
-.gallery img {
-  width: 100%;
-  border-radius: 10px;
+/* zoom */
+.zoom{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.8);
+  display:none;justify-content:center;align-items:center;
 }
+.zoom img{ max-width:90%;border-radius:10px }
 
 /* Splash */
-.splash {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: rgba(0,150,255,0.5);
-  border-radius: 50%;
-  animation: splash 0.6s ease-out;
+.splash{
+  position:absolute;width:20px;height:20px;
+  background:rgba(0,150,255,0.5);
+  border-radius:50%;
+  animation:splash 0.6s ease-out;
+}
+@keyframes splash{
+  to{transform:scale(6);opacity:0}
 }
 
-@keyframes splash {
-  to {
-    transform: scale(6);
-    opacity: 0;
-  }
+/* overlay */
+.overlay{
+  position:fixed;top:-100%;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.7);
+  display:flex;justify-content:center;align-items:center;
+  transition:0.6s;
+}
+.overlay.active{ top:0 }
+.box{
+  background:#ffffff22;color:white;
+  padding:20px;border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* Message overlay */
-.overlay {
-  position: fixed;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  transition: 0.6s;
+/* buttons */
+button{
+  margin:10px;padding:10px 20px;
+  border:none;border-radius:8px;
+  cursor:pointer;
+  background:#fff;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  transition:0.3s;
 }
+button:hover{ transform:translateY(-3px); }
 
-.overlay.active {
-  top: 0;
-}
+#musicBtn{ position:fixed;bottom:20px;right:20px }
+#waterBtn{ position:fixed;bottom:20px;left:20px }
 
-.box {
-  background: #ffffff22;
-  padding: 20px;
-  border-radius: 10px;
+/* flower rain */
+.flower{
+  position:fixed;top:-20px;width:15px;height:15px;
+  background:yellow;border-radius:50%;
+  animation:fall 5s linear;
 }
-
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-}
-
-/* Music button */
-#musicBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: white;
-}
+@keyframes fall{ to{ transform:translateY(110vh);opacity:0 } }
 </style>
 </head>
-
 <body>
 
+<!-- bubbles -->
+<script>
+for(let i=0;i<20;i++){
+ let b=document.createElement('div');
+ b.className='bubble';
+ b.style.left=Math.random()*100+'%';
+ b.style.animationDuration=(5+Math.random()*5)+'s';
+ document.body.appendChild(b);
+}
+</script>
+
 <div class="profile">
-  <img src="img11.jpg" alt="crush">
+  <img src="img11.jpg">
   <h1>Happy Thingyan </h1>
   <div id="countdown"></div>
 </div>
 
 <div class="gallery">
-  <img src="img12.jpg">
-  <img src="img13.jpg">
-  <img src="img14.jpg">
-  <img src="img15.jpg">
-  <img src="img16.jpg">
-  <img src="img17.jpg">
-  <img src="img18.jpg">
-  <img src="img19.jpg">
+  <img src="img12.jpg"><img src="img13.jpg"><img src="img14.jpg"><img src="img15.jpg">
+  <img src="img16.jpg"><img src="img17.jpg"><img src="img18.jpg"><img src="img19.jpg">
   <img src="img20.jpg">
 </div>
 
+<div class="zoom" id="zoom" onclick="this.style.display='none'"><img id="zoomImg"></div>
+
 <div id="overlay" class="overlay">
   <div class="box">
-    <h2>ကိုယ့်အပေါ်မှာ အမြဲချိုပေးခဲ့တဲ့ချိုရေ... ကျေးဇူးတင်ပါတယ်။ </h2>
-    <button onclick="closeMsg()">Close</button>
+    <h2 id="msg"></h2>
   </div>
 </div>
 
 <audio id="music" src="song1.mp3"></audio>
 <button id="musicBtn" onclick="toggleMusic()">Play</button>
+<button id="waterBtn" onclick="rain()"> Water</button>
 
 <script>
-let clickCount = 0;
-
-// Click splash + message
-window.addEventListener("click", function(e) {
-  // Splash
-  let splash = document.createElement("div");
-  splash.className = "splash";
-  splash.style.left = e.pageX + "px";
-  splash.style.top = e.pageY + "px";
-  document.body.appendChild(splash);
-
-  setTimeout(() => splash.remove(), 600);
-
-  clickCount++;
-
-  if(clickCount === 2){
-    document.getElementById("overlay").classList.add("active");
+// splash + overlay from ANY image click
+let messageShown=false;
+document.querySelectorAll('.gallery img').forEach(img=>{
+  img.onclick=(e)=>{
+    splash(e);
+    zoom(e.target.src);
+    if(!messageShown){ showMessage(); messageShown=true }
   }
 });
 
-function closeMsg(){
-  document.getElementById("overlay").classList.remove("active");
+function splash(e){
+ let s=document.createElement('div');
+ s.className='splash';
+ s.style.left=e.pageX+'px';
+ s.style.top=e.pageY+'px';
+ document.body.appendChild(s);
+ setTimeout(()=>s.remove(),600);
 }
 
-// Music control
-let music = document.getElementById("music");
-let btn = document.getElementById("musicBtn");
+function zoom(src){
+ document.getElementById('zoomImg').src=src;
+ document.getElementById('zoom').style.display='flex';
+}
 
+// typing effect
+function showMessage(){
+ let text="ကိုယ့်အပေါ်မှာ အမြဲချိုပေးခဲ့တဲ့ချိုရေ... ကျေးဇူးတင်ပါတယ်။
+   ပျော်ရွှင်စရာသင်္ကြန်က မင်းကိုစောင့်ကြိုနေပါတယ်။❤";
+ let i=0;
+ document.getElementById('overlay').classList.add('active');
+ let interval=setInterval(()=>{
+  document.getElementById('msg').innerHTML+=text[i];
+  i++;
+  if(i>=text.length) clearInterval(interval);
+ },50);
+}
+
+// music
+let music=document.getElementById('music');
 function toggleMusic(){
-  if(music.paused){
-    music.play();
-    btn.innerText = "Pause";
-  } else {
-    music.pause();
-    btn.innerText = "Play";
-  }
+ if(music.paused){music.play();musicBtn.innerText='Pause'}
+ else{music.pause();musicBtn.innerText='Play'}
 }
 
-// Countdown (Thingyan - April 13)
-let target = new Date(new Date().getFullYear(), 3, 13);
+// flower rain
+function rain(){
+ for(let i=0;i<20;i++){
+  let f=document.createElement('div');
+  f.className='flower';
+  f.style.left=Math.random()*100+'%';
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),5000);
+ }
+}
 
+// countdown
+let target=new Date(new Date().getFullYear(),3,13);
 function updateCountdown(){
-  let now = new Date();
-  let diff = target - now;
-
-  if(diff < 0) return;
-
-  let days = Math.floor(diff / (1000*60*60*24));
-  let hours = Math.floor((diff / (1000*60*60)) % 24);
-  let mins = Math.floor((diff / (1000*60)) % 60);
-
-  document.getElementById("countdown").innerText =
-    days + " days " + hours + " hrs " + mins + " mins";
+ let now=new Date();
+ let diff=target-now;
+ let d=Math.floor(diff/(1000*60*60*24));
+ let h=Math.floor((diff/(1000*60*60))%24);
+ let m=Math.floor((diff/(1000*60))%60);
+ let s=Math.floor((diff/1000)%60);
+ document.getElementById('countdown').innerText=
+ d+'d '+h+'h '+m+'m '+s+'s';
 }
-
-setInterval(updateCountdown, 1000);
+setInterval(updateCountdown,1000);
 </script>
 
 </body>
 </html>
+
