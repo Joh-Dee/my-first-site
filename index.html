@@ -1,209 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Surprise for You</title>
-    <style>
-        /* Background & Fonts */
-        body {
-            margin: 0;
-            padding: 0;
-            background: #fff0f3;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Thingyan </title>
 
-        /* Floating Hearts Animation */
-        .hearts-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .heart {
-            position: absolute;
-            color: #ff4d6d;
-            font-size: 20px;
-            animation: float 6s infinite ease-in;
-            opacity: 0;
-        }
-        @keyframes float {
-            0% { transform: translateY(100vh) scale(0); opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-        }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(to bottom, #a8e6ff, #ffd6e0);
+  overflow-x: hidden;
+}
 
-        /* Main Container */
-        .container {
-            position: relative;
-            z-index: 1;
-            padding: 50px 20px;
-        }
+/* Profile */
+.profile {
+  margin-top: 40px;
+}
 
-        /* Garden Layout (8 Flowers) */
-        .flower-garden {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
-            max-width: 800px;
-            margin: 20px auto;
-        }
-        .flower-box {
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .flower-box:hover { transform: scale(1.1); }
-        .flower-box img {
-            width: 100px; height: 100px;
-            border-radius: 50%;
-            border: 4px solid #ffb3c1;
-            object-fit: cover;
-        }
-        .poem-text {
-            font-size: 14px; color: #c9184a;
-            margin-top: 5px; font-style: italic;
-            height: 40px;
-        }
+.profile img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+}
 
-        /* Her Main Photo (The Centerpiece) */
-        .crush-photo {
-            margin: 40px auto;
-            position: relative;
-            display: inline-block;
-        }
-        .crush-photo img {
-            width: 250px; height: 250px;
-            border-radius: 50%;
-            border: 8px solid #ff4d6d;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            object-fit: cover;
-        }
+h1 {
+  color: white;
+}
 
-        /* Proposal Section */
-        .proposal {
-            margin-top: 50px;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        h2 { color: #ff4d6d; }
+/* Countdown */
+#countdown {
+  font-size: 20px;
+  color: white;
+  margin-top: 10px;
+}
 
-        .btn-group {
-            margin-top: 20px;
-            position: relative;
-            height: 60px;
-        }
-        button {
-            padding: 10px 30px;
-            font-size: 18px;
-            border-radius: 25px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        #yesBtn { background: #ff4d6d; color: white; margin-right: 10px; }
-        #noBtn { background: #adb5bd; color: white; position: absolute; }
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
 
-        /* Music Button */
-        #musicToggle {
-            position: fixed; top: 20px; right: 20px;
-            background: white; border: 1px solid #ff4d6d;
-            padding: 10px; border-radius: 50%; cursor: pointer;
-        }
-    </style>
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Splash */
+.splash {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(0,150,255,0.5);
+  border-radius: 50%;
+  animation: splash 0.6s ease-out;
+}
+
+@keyframes splash {
+  to {
+    transform: scale(6);
+    opacity: 0;
+  }
+}
+
+/* Message overlay */
+.overlay {
+  position: fixed;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  transition: 0.6s;
+}
+
+.overlay.active {
+  top: 0;
+}
+
+.box {
+  background: #ffffff22;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Music button */
+#musicBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="hearts-container" id="hearts"></div>
+<div class="profile">
+  <img src="img11.jpg" alt="crush">
+  <h1>Happy Thingyan </h1>
+  <div id="countdown"></div>
+</div>
 
-    <button id="musicToggle" onclick="toggleMusic()"></button>
-    <audio id="bgMusic" loop>
-        <source src="song1.mp3" type="audio/mp4">
-    </audio>
+<div class="gallery">
+  <img src="img12.jpg">
+  <img src="img13.jpg">
+  <img src="img14.jpg">
+  <img src="img15.jpg">
+  <img src="img16.jpg">
+  <img src="img17.jpg">
+  <img src="img18.jpg">
+  <img src="img19.jpg">
+  <img src="img20.jpg">
+</div>
 
-    <div class="container">
-        <h1>For Someone Special... </h1>
+<div id="overlay" class="overlay">
+  <div class="box">
+    <h2>ကိုယ့်အပေါ်မှာ အမြဲချိုပေးခဲ့တဲ့ချိုရေ... ကျေးဇူးတင်ပါတယ်။ </h2>
+    <button onclick="closeMsg()">Close</button>
+  </div>
+</div>
 
-        <div class="flower-garden">
-            <script>
-                const poems = [
-                    "Your smile is my favorite view.",
-                    "In the garden of my life, you're the rarest bloom.",
-                    "Every moment with you is a poem.",
-                    "Your kindness is a light in the dark.",
-                    "I find peace in your presence.",
-                    "You make the world more beautiful.",
-                    "Thinking of you makes my day.",
-                    "You are my favorite melody."
-                ];
-                for (let i = 2; i <= 9; i++) {
-                    document.write(`
-                        <div class="flower-box" onclick="alert('${poems[i-2]}')">
-                            <img src="img${i}.jpg" alt="flower">
-                            <div class="poem-text">Click Me</div>
-                        </div>
-                    `);
-                }
-            </script>
-        </div>
+<audio id="music" src="song1.mp3"></audio>
+<button id="musicBtn" onclick="toggleMusic()">Play</button>
 
-        <div class="crush-photo">
-            <img src="img1.jpg" alt="You">
-            <p style="color:#ff4d6d; font-weight: bold;">The most beautiful of all.</p>
-        </div>
+<script>
+let clickCount = 0;
 
-        <div class="proposal">
-            <h2>Will you be my Valentine? </h2>
-            <div class="btn-group">
-                <button id="yesBtn" onclick="celebrate()">Yes!</button>
-                <button id="noBtn" onmouseover="moveButton()">No</button>
-            </div>
-        </div>
-    </div>
+// Click splash + message
+window.addEventListener("click", function(e) {
+  // Splash
+  let splash = document.createElement("div");
+  splash.className = "splash";
+  splash.style.left = e.pageX + "px";
+  splash.style.top = e.pageY + "px";
+  document.body.appendChild(splash);
 
-    <script>
-        // 1. Floating Hearts Logic
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            document.getElementById('hearts').appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
-        }
-        setInterval(createHeart, 300);
+  setTimeout(() => splash.remove(), 600);
 
-        // 2. Runaway "No" Button
-        function moveButton() {
-            const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
-        }
+  clickCount++;
 
-        // 3. Music Control
-        const music = document.getElementById('bgMusic');
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                document.getElementById('musicToggle').innerHTML = '';
-            } else {
-                music.pause();
-                document.getElementById('musicToggle').innerHTML = '';
-            }
-        }
+  if(clickCount === 2){
+    document.getElementById("overlay").classList.add("active");
+  }
+});
 
-        // 4. Celebration
-        function celebrate() {
-            alert("Yay! You made my day! ");
-            // You can add confetti effect here later
-        }
-    </script>
+function closeMsg(){
+  document.getElementById("overlay").classList.remove("active");
+}
+
+// Music control
+let music = document.getElementById("music");
+let btn = document.getElementById("musicBtn");
+
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+    btn.innerText = "Pause";
+  } else {
+    music.pause();
+    btn.innerText = "Play";
+  }
+}
+
+// Countdown (Thingyan - April 13)
+let target = new Date(new Date().getFullYear(), 3, 13);
+
+function updateCountdown(){
+  let now = new Date();
+  let diff = target - now;
+
+  if(diff < 0) return;
+
+  let days = Math.floor(diff / (1000*60*60*24));
+  let hours = Math.floor((diff / (1000*60*60)) % 24);
+  let mins = Math.floor((diff / (1000*60)) % 60);
+
+  document.getElementById("countdown").innerText =
+    days + " days " + hours + " hrs " + mins + " mins";
+}
+
+setInterval(updateCountdown, 1000);
+</script>
+
 </body>
 </html>
-
